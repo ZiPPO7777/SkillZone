@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Who Liked This Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .likes-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .likes-list li {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 64, 48, 0.15);
+            border: 1px solid rgba(0, 64, 48, 0.3);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .likes-list li:hover {
+            background: rgba(0, 64, 48, 0.25);
+            border-color: #004030;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 64, 48, 0.2);
+        }
+
+        .profile-pic {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #004030 0%, #006650 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-pic svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+        }
+
+        .username {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffffff;
+            flex-grow: 1;
+        }
+
+        .username a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .username a:hover {
+            text-decoration: underline;
+        }
+
+        .profile-link {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .no-likes {
+            text-align: center;
+            color: #888888;
+            font-style: italic;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #004030 0%, #006650 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 64, 48, 0.3);
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #006650 0%, #008070 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 64, 48, 0.4);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+        }
+
+        .back-arrow {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
+
+            .likes-list li {
+                padding: 14px 16px;
+                border-radius: 12px;
+                margin-bottom: 10px;
+            }
+
+            .profile-pic {
+                width: 40px;
+                height: 40px;
+                margin-right: 12px;
+            }
+
+            .profile-pic svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .username {
+                font-size: 1rem;
+            }
+
+            .back-button {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 35px;
+            }
+
+            .likes-list li {
+                padding: 15px 18px;
+            }
+
+            .profile-pic {
+                width: 44px;
+                height: 44px;
+                margin-right: 14px;
+            }
+
+            .profile-pic svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1025px) {
+            .container {
+                padding: 50px 30px;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+                margin-bottom: 45px;
+            }
+
+            .likes-list li {
+                padding: 18px 22px;
+            }
+
+            .profile-pic {
+                width: 52px;
+                height: 52px;
+                margin-right: 18px;
+            }
+
+            .profile-pic svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+
+        /* Smooth animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .likes-list li {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .likes-list li:nth-child(1) { animation-delay: 0.1s; }
+        .likes-list li:nth-child(2) { animation-delay: 0.2s; }
+        .likes-list li:nth-child(3) { animation-delay: 0.3s; }
+        .likes-list li:nth-child(4) { animation-delay: 0.4s; }
+        .likes-list li:nth-child(5) { animation-delay: 0.5s; }
+        .likes-list li:nth-child(n+6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>People who liked this post</h2>
+        
+        <ul class="likes-list">
+            {% for user in liked_users %}
+            <li>
+                <a href="#" class="profile-link">
+                    <div class="profile-pic">
+                        {% if user.profile_pic %}
+                            <img src="{{ user.profile_pic.url }}" alt="Profile picture">
+                        {% else %}
+                            <img src="{{ MEDIA_URL }}default/defaultprofile.png" alt="Profile picture">
+                        {% endif %}
+                    </div>
+                    <span class="username">{{ user.username }}</span>
+                </a>
+            </li>
+            {% empty %}
+            <li class="no-likes">No likes yet.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'feed_view' %}#post-{{ post.id }}" class="back-button">
+            <span class="back-arrow">←</span>
+            Back to Feed
+        </a>
+    </div>
+</body>
+</html>

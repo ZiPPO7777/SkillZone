@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillZone Footer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Footer Styles */
+        .szf__main-footer-container-wrapper {
+            background: linear-gradient(135deg, #000000 0%, #004030 50%, #000000 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-top: 3px solid #004030;
+        }
+
+        .szf__animated-background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 64, 48, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(0, 64, 48, 0.2) 0%, transparent 50%);
+            animation: szf__pulse-background 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes szf__pulse-background {
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
+        }
+
+        .szf__footer-content-grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .szf__primary-footer-sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .szf__footer-section-brand-container {
+            text-align: center;
+        }
+
+        .szf__brand-logo-interactive-element {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #004030;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(0, 64, 48, 0.5);
+        }
+
+        .szf__brand-logo-interactive-element:hover {
+            transform: scale(1.05);
+            color: #00b050;
+            text-shadow: 0 0 30px rgba(0, 176, 80, 0.8);
+        }
+
+        .szf__brand-tagline-descriptive-text {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .szf__social-media-links-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .szf__social-icon-interactive-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(0, 64, 48, 0.3);
+            border: 2px solid #004030;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .szf__social-icon-interactive-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 176, 80, 0.3) 0%, transparent 70%);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .szf__social-icon-interactive-button:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .szf__social-icon-interactive-button:hover {
+            transform: translateY(-3px);
+            border-color: #00b050;
+            box-shadow: 0 5px 15px rgba(0, 176, 80, 0.4);
+        }
+
+        .szf__footer-section-navigation-links {
+            text-align: left;
+        }
+
+        .szf__section-heading-stylized-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #004030;
+            margin-bottom: 20px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .szf__section-heading-stylized-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #004030, #00b050);
+            border-radius: 2px;
+        }
+
+        .szf__navigation-links-list-container {
+            list-style: none;
+        }
+
+        .szf__nav-link-item-wrapper {
+            margin-bottom: 12px;
+        }
+
+        .szf__footer-navigation-link-element {
+            color: #cccccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .szf__footer-navigation-link-element::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #004030, #00b050);
+            transition: width 0.3s ease;
+        }
+
+        .szf__footer-navigation-link-element:hover {
+            color: #00b050;
+            transform: translateX(5px);
+        }
+
+        .szf__footer-navigation-link-element:hover::before {
+            width: 100%;
+        }
+
+        .szf__newsletter-subscription-section {
+            text-align: left;
+        }
+
+        .szf__newsletter-input-form-container {
+            margin-top: 20px;
+        }
+
+        .szf__email-input-field-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .szf__newsletter-email-input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #004030;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .szf__newsletter-email-input-field:focus {
+            outline: none;
+            border-color: #00b050;
+            box-shadow: 0 0 15px rgba(0, 176, 80, 0.3);
+        }
+
+        .szf__newsletter-email-input-field::placeholder {
+            color: #888;
+        }
+
+        .szf__newsletter-submit-button-element {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #004030, #00b050);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .szf__newsletter-submit-button-element::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .szf__newsletter-submit-button-element:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .szf__newsletter-submit-button-element:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 176, 80, 0.4);
+        }
+
+        .szf__footer-divider-separator-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #004030, transparent);
+            margin: 30px 0;
+        }
+
+        .szf__bottom-footer-copyright-section {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(0, 64, 48, 0.3);
+        }
+
+        .szf__copyright-text-content {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .szf__additional-links-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .szf__bottom-footer-link-element {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .szf__bottom-footer-link-element:hover {
+            color: #00b050;
+        }
+
+        .szf__floating-animation-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .szf__particle-element {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 176, 80, 0.6);
+            border-radius: 50%;
+            animation: szf__float-particles 8s linear infinite;
+        }
+
+        @keyframes szf__float-particles {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .szf__scroll-to-top-button-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .szf__scroll-to-top-interactive-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #004030, #00b050);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 64, 48, 0.3);
+            opacity: 0;
+            transform: translateY(100px);
+        }
+
+        .szf__scroll-to-top-interactive-button.szf__visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .szf__scroll-to-top-interactive-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 176, 80, 0.5);
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .szf__primary-footer-sections-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .szf__footer-section-brand-container,
+            .szf__footer-section-navigation-links,
+            .szf__newsletter-subscription-section {
+                text-align: center;
+            }
+
+            .szf__brand-logo-interactive-element {
+                font-size: 2rem;
+            }
+
+            .szf__section-heading-stylized-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .szf__additional-links-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .szf__footer-content-grid-container {
+                padding: 40px 15px 15px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .szf__social-media-links-container {
+                gap: 10px;
+            }
+
+            .szf__social-icon-interactive-button {
+                width: 40px;
+                height: 40px;
+            }
+
+            .szf__brand-logo-interactive-element {
+                font-size: 1.8rem;
+            }
+
+            .szf__scroll-to-top-interactive-button {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media screen and (min-width: 1400px) {
+            .szf__footer-content-grid-container {
+                max-width: 1400px;
+            }
+
+            .szf__primary-footer-sections-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+   
+
+    <footer class="szf__main-footer-container-wrapper">
+        <div class="szf__animated-background-overlay"></div>
+        <div class="szf__floating-animation-particles" id="szf__particles-container"></div>
+        
+        <div class="szf__footer-content-grid-container">
+            <div class="szf__primary-footer-sections-grid">
+                <!-- Brand Section -->
+                <div class="szf__footer-section-brand-container">
+                    <div class="szf__brand-logo-interactive-element" id="szf__brand-logo-element">
+                        💡 SkillZone
+                    </div>
+                    <p class="szf__brand-tagline-descriptive-text">
+                        Empowering professionals and students to showcase their skills, connect with peers, and grow their careers through collaborative learning and endorsements.
+                    </p>
+                    <div class="szf__social-media-links-container">
+                        <a href="#" class="szf__social-icon-interactive-button" aria-label="Facebook">
+                            <span>f</span>
+                        </a>
+                        <a href="#" class="szf__social-icon-interactive-button" aria-label="Twitter">
+                            <span>t</span>
+                        </a>
+                        <a href="#" class="szf__social-icon-interactive-button" aria-label="LinkedIn">
+                            <span>in</span>
+                        </a>
+                        <a href="#" class="szf__social-icon-interactive-button" aria-label="Instagram">
+                            <span>ig</span>
+                        </a>
+                        <a href="#" class="szf__social-icon-interactive-button" aria-label="GitHub">
+                            <span>gh</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="szf__footer-section-navigation-links">
+                    <h3 class="szf__section-heading-stylized-title">Platform</h3>
+                    <ul class="szf__navigation-links-list-container">
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Browse Profiles</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Skill Categories</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Join Groups</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Upload Certificates</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Endorse Skills</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support Links -->
+                <div class="szf__footer-section-navigation-links">
+                    <h3 class="szf__section-heading-stylized-title">Support</h3>
+                    <ul class="szf__navigation-links-list-container">
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Help Center</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Community Guidelines</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Contact Support</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">Report Issue</a>
+                        </li>
+                        <li class="szf__nav-link-item-wrapper">
+                            <a href="#" class="szf__footer-navigation-link-element">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Section -->
+                <div class="szf__newsletter-subscription-section">
+                    <h3 class="szf__section-heading-stylized-title">Stay Connected</h3>
+                    <p class="szf__brand-tagline-descriptive-text">
+                        Get the latest updates on new features, skill trends, and community highlights.
+                    </p>
+                    <form class="szf__newsletter-input-form-container" id="szf__newsletter-form">
+                        <div class="szf__email-input-field-wrapper">
+                            <input 
+                                type="email" 
+                                class="szf__newsletter-email-input-field" 
+                                placeholder="Enter your email address"
+                                id="szf__newsletter-email-input"
+                                required
+                            >
+                        </div>
+                        <button type="submit" class="szf__newsletter-submit-button-element">
+                            Subscribe to Updates
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="szf__footer-divider-separator-line"></div>
+
+            <div class="szf__bottom-footer-copyright-section">
+                <p class="szf__copyright-text-content">
+                    © 2025 SkillZone. All rights reserved. Building tomorrow's professional network today.
+                </p>
+                <div class="szf__additional-links-container">
+                    <a href="#" class="szf__bottom-footer-link-element">Privacy Policy</a>
+                    <a href="#" class="szf__bottom-footer-link-element">Terms of Service</a>
+                    <a href="#" class="szf__bottom-footer-link-element">Cookie Policy</a>
+                    <a href="#" class="szf__bottom-footer-link-element">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="szf__scroll-to-top-button-container">
+        <button class="szf__scroll-to-top-interactive-button" id="szf__scroll-to-top-btn" aria-label="Scroll to top">
+            ↑
+        </button>
+    </div>
+
+    <script>
+        // Floating particles animation
+        function szf__createFloatingParticles() {
+            const particlesContainer = document.getElementById('szf__particles-container');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'szf__particle-element';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll to top functionality
+        function szf__initializeScrollToTop() {
+            const scrollButton = document.getElementById('szf__scroll-to-top-btn');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollButton.classList.add('szf__visible');
+                } else {
+                    scrollButton.classList.remove('szf__visible');
+                }
+            });
+
+            scrollButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Newsletter form handling
+        function szf__initializeNewsletterForm() {
+            const form = document.getElementById('szf__newsletter-form');
+            const emailInput = document.getElementById('szf__newsletter-email-input');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = emailInput.value.trim();
+                
+                if (email) {
+                    // Simulate subscription process
+                    const button = form.querySelector('.szf__newsletter-submit-button-element');
+                    const originalText = button.textContent;
+                    
+                    button.textContent = 'Subscribing...';
+                    button.disabled = true;
+                    
+                    setTimeout(() => {
+                        button.textContent = 'Subscribed! ✓';
+                        button.style.background = 'linear-gradient(45deg, #00b050, #004030)';
+                        
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.disabled = false;
+                            button.style.background = 'linear-gradient(45deg, #004030, #00b050)';
+                            emailInput.value = '';
+                        }, 2000);
+                    }, 1500);
+                }
+            });
+        }
+
+        // Brand logo animation
+        function szf__initializeBrandLogoAnimation() {
+            const brandLogo = document.getElementById('szf__brand-logo-element');
+            
+            brandLogo.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'szf__pulse-background 0.6s ease-in-out';
+                }, 10);
+            });
+        }
+
+        // Social media links interaction
+        function szf__initializeSocialMediaInteractions() {
+            const socialLinks = document.querySelectorAll('.szf__social-icon-interactive-button');
+            
+            socialLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.top = '50%';
+                    ripple.style.left = '50%';
+                    ripple.style.width = '0';
+                    ripple.style.height = '0';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.transform = 'translate(-50%, -50%)';
+                    ripple.style.animation = 'szf__ripple-effect 0.6s ease-out';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+
+        // Add ripple effect keyframes
+        function szf__addRippleEffectStyles() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes szf__ripple-effect {
+                    0% {
+                        width: 0;
+                        height: 0;
+                        opacity: 1;
+                    }
+                    100% {
+                        width: 100px;
+                        height: 100px;
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            szf__createFloatingParticles();
+            szf__initializeScrollToTop();
+            szf__initializeNewsletterForm();
+            szf__initializeBrandLogoAnimation();
+            szf__initializeSocialMediaInteractions();
+            szf__addRippleEffectStyles();
+        });
+
+        // Smooth scrolling for footer links
+        document.querySelectorAll('.szf__footer-navigation-link-element').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Add smooth scrolling behavior for internal links
+                console.log('Navigating to:', this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>

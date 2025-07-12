@@ -1,0 +1,669 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+About
+{% endblock title %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SkillZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        /* Base Styles */
+        .skillZone_about__root-container-x95 {
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* Hero Section */
+        .skillZone_about__hero-wrapper-b28 {
+            background: linear-gradient(135deg, #000 0%, #004030 100%);
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skillZone_about__hero-pattern-f73 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            background-image: 
+                radial-gradient(circle at 20% 30%, #004030 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, #004030 0%, transparent 25%);
+        }
+
+        .skillZone_about__hero-content-n42 {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skillZone_about__main-title-k19 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .skillZone_about__highlight-text-j34 {
+            color: #00d9a6;
+            position: relative;
+            display: inline-block;
+        }
+
+        .skillZone_about__subtitle-m87 {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skillZone_about__cta-button-p56 {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background-color: #00d9a6;
+            color: #000;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 217, 166, 0.3);
+        }
+
+        .skillZone_about__cta-button-p56:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 217, 166, 0.4);
+        }
+
+        /* Stats Section */
+        .skillZone_about__stats-section-q12 {
+            background-color: white;
+            padding: 5rem 2rem;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .skillZone_about__stats-grid-w89 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skillZone_about__stat-item-r63 {
+            text-align: center;
+            padding: 2rem;
+            background: #f5f5f5;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skillZone_about__stat-item-r63:hover {
+            transform: translateY(-5px);
+            background: #004030;
+            color: white;
+        }
+
+        .skillZone_about__stat-item-r63:hover .skillZone_about__stat-number-t45 {
+            color: #00d9a6;
+        }
+
+        .skillZone_about__stat-number-t45 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #004030;
+            margin-bottom: 0.5rem;
+        }
+
+        .skillZone_about__stat-label-y78 {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Mission Section */
+        .skillZone_about__mission-section-u23 {
+            padding: 6rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .skillZone_about__mission-container-i90 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skillZone_about__mission-image-o34 {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .skillZone_about__mission-image-o34 img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .skillZone_about__mission-image-o34:hover img {
+            transform: scale(1.03);
+        }
+
+        .skillZone_about__mission-content-p09 h2 {
+            font-size: 2rem;
+            color: #004030;
+            margin-bottom: 1.5rem;
+        }
+
+        .skillZone_about__mission-text-l56 {
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .skillZone_about__mission-list-k83 {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .skillZone_about__mission-item-n45 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .skillZone_about__mission-item-n45::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d9a6;
+            font-weight: bold;
+        }
+
+        /* Team Section */
+        .skillZone_about__team-section-h67 {
+            padding: 6rem 2rem;
+            background-color: white;
+        }
+
+        .skillZone_about__team-header-j89 {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .skillZone_about__team-title-m34 {
+            font-size: 2rem;
+            color: #004030;
+            margin-bottom: 1rem;
+        }
+
+        .skillZone_about__team-subtitle-p12 {
+            color: #666;
+        }
+
+        .skillZone_about__team-grid-q56 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skillZone_about__team-card-w23 {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skillZone_about__team-card-w23:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 64, 48, 0.1);
+        }
+
+        .skillZone_about__team-image-r78 {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .skillZone_about__team-info-y45 {
+            padding: 1.5rem;
+        }
+
+        .skillZone_about__team-name-t67 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: #004030;
+        }
+
+        .skillZone_about__team-role-u89 {
+            color: #00d9a6;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .skillZone_about__team-bio-i23 {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .skillZone_about__team-social-o56 {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .skillZone_about__social-link-p34 {
+            color: #004030;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .skillZone_about__social-link-p34:hover {
+            opacity: 1;
+            color: #00d9a6;
+        }
+
+        /* Values Section */
+        .skillZone_about__values-section-a23 {
+            padding: 6rem 2rem;
+            background-color: #004030;
+            color: white;
+        }
+
+        .skillZone_about__values-header-s45 {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .skillZone_about__values-title-d56 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .skillZone_about__values-subtitle-f67 {
+            opacity: 0.9;
+        }
+
+        .skillZone_about__values-grid-h89 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skillZone_about__value-card-j12 {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skillZone_about__value-card-j12:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .skillZone_about__value-icon-k34 {
+            font-size: 2rem;
+            color: #00d9a6;
+            margin-bottom: 1.5rem;
+        }
+
+        .skillZone_about__value-title-l89 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .skillZone_about__value-desc-m45 {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .skillZone_about__stats-grid-w89 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .skillZone_about__mission-container-i90 {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .skillZone_about__mission-image-o34 {
+                order: -1;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .skillZone_about__hero-wrapper-b28 {
+                padding: 6rem 1.5rem;
+            }
+            
+            .skillZone_about__stats-grid-w89 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .skillZone_about__team-grid-q56 {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="skillZone_about__root-container-x95">
+    <!-- Hero Section -->
+    <section class="skillZone_about__hero-wrapper-b28">
+        <div class="skillZone_about__hero-pattern-f73"></div>
+        <div class="skillZone_about__hero-content-n42">
+            <h1 class="skillZone_about__main-title-k19">
+                Empowering <span class="skillZone_about__highlight-text-j34">Skill Sharing</span> Worldwide
+            </h1>
+            <p class="skillZone_about__subtitle-m87">
+                SkillZone connects professionals and students to share knowledge, showcase expertise, and build meaningful connections in their fields. Join our growing community today.
+            </p>
+            <a href="#" class="skillZone_about__cta-button-p56">Join Our Community</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="skillZone_about__stats-section-q12">
+        <div class="skillZone_about__stats-grid-w89">
+            <div class="skillZone_about__stat-item-r63">
+                <div class="skillZone_about__stat-number-t45" data-count="25000">0</div>
+                <div class="skillZone_about__stat-label-y78">Active Members</div>
+            </div>
+            <div class="skillZone_about__stat-item-r63">
+                <div class="skillZone_about__stat-number-t45" data-count="1500">0</div>
+                <div class="skillZone_about__stat-label-y78">Skills Shared</div>
+            </div>
+            <div class="skillZone_about__stat-item-r63">
+                <div class="skillZone_about__stat-number-t45" data-count="500">0</div>
+                <div class="skillZone_about__stat-label-y78">Communities</div>
+            </div>
+            <div class="skillZone_about__stat-item-r63">
+                <div class="skillZone_about__stat-number-t45" data-count="10000">0</div>
+                <div class="skillZone_about__stat-label-y78">Endorsements</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="skillZone_about__mission-section-u23">
+        <div class="skillZone_about__mission-container-i90">
+            <div class="skillZone_about__mission-image-o34">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="SkillZone community">
+            </div>
+            <div class="skillZone_about__mission-content-p09">
+                <h2>Our Mission</h2>
+                <p class="skillZone_about__mission-text-l56">
+                    At SkillZone, we're revolutionizing how professionals and students connect through skill sharing. Our platform breaks down barriers to knowledge exchange.
+                </p>
+                <ul class="skillZone_about__mission-list-k83">
+                    <li class="skillZone_about__mission-item-n45">Create verifiable skill profiles</li>
+                    <li class="skillZone_about__mission-item-n45">Facilitate meaningful connections</li>
+                    <li class="skillZone_about__mission-item-n45">Provide recognition for expertise</li>
+                    <li class="skillZone_about__mission-item-n45">Build specialized communities</li>
+                </ul>
+                <p class="skillZone_about__mission-text-l56">
+                    We believe everyone has valuable skills to share and endless potential to grow.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="skillZone_about__team-section-h67">
+        <div class="skillZone_about__team-header-j89">
+            <h2 class="skillZone_about__team-title-m34">Meet Our Team</h2>
+            <p class="skillZone_about__team-subtitle-p12">The passionate people building the future of skill sharing</p>
+        </div>
+        <div class="skillZone_about__team-grid-q56">
+            <div class="skillZone_about__team-card-w23">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Alex Johnson" class="skillZone_about__team-image-r78">
+                <div class="skillZone_about__team-info-y45">
+                    <h3 class="skillZone_about__team-name-t67">Alex Johnson</h3>
+                    <span class="skillZone_about__team-role-u89">Founder & CEO</span>
+                    <p class="skillZone_about__team-bio-i23">Education technology expert with a vision for democratizing skill sharing.</p>
+                    <div class="skillZone_about__team-social-o56">
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="skillZone_about__team-card-w23">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Sarah Chen" class="skillZone_about__team-image-r78">
+                <div class="skillZone_about__team-info-y45">
+                    <h3 class="skillZone_about__team-name-t67">Sarah Chen</h3>
+                    <span class="skillZone_about__team-role-u89">CTO</span>
+                    <p class="skillZone_about__team-bio-i23">Technical leader specializing in scalable learning platforms.</p>
+                    <div class="skillZone_about__team-social-o56">
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="skillZone_about__team-card-w23">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Michael Rodriguez" class="skillZone_about__team-image-r78">
+                <div class="skillZone_about__team-info-y45">
+                    <h3 class="skillZone_about__team-name-t67">Michael Rodriguez</h3>
+                    <span class="skillZone_about__team-role-u89">Head of Community</span>
+                    <p class="skillZone_about__team-bio-i23">Community builder passionate about connecting people through skills.</p>
+                    <div class="skillZone_about__team-social-o56">
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="skillZone_about__social-link-p34"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="skillZone_about__values-section-a23">
+        <div class="skillZone_about__values-header-s45">
+            <h2 class="skillZone_about__values-title-d56">Our Core Values</h2>
+            <p class="skillZone_about__values-subtitle-f67">The principles that guide everything we do at SkillZone</p>
+        </div>
+        <div class="skillZone_about__values-grid-h89">
+            <div class="skillZone_about__value-card-j12">
+                <div class="skillZone_about__value-icon-k34"><i class="fas fa-share-alt"></i></div>
+                <h3 class="skillZone_about__value-title-l89">Collaboration</h3>
+                <p class="skillZone_about__value-desc-m45">We believe knowledge grows when shared. Our platform fosters meaningful collaborations.</p>
+            </div>
+            <div class="skillZone_about__value-card-j12">
+                <div class="skillZone_about__value-icon-k34"><i class="fas fa-award"></i></div>
+                <h3 class="skillZone_about__value-title-l89">Excellence</h3>
+                <p class="skillZone_about__value-desc-m45">We strive for excellence in everything we do, from features to community support.</p>
+            </div>
+            <div class="skillZone_about__value-card-j12">
+                <div class="skillZone_about__value-icon-k34"><i class="fas fa-globe"></i></div>
+                <h3 class="skillZone_about__value-title-l89">Inclusivity</h3>
+                <p class="skillZone_about__value-desc-m45">SkillZone is for everyone, regardless of background or experience level.</p>
+            </div>
+            <div class="skillZone_about__value-card-j12">
+                <div class="skillZone_about__value-icon-k34"><i class="fas fa-lightbulb"></i></div>
+                <h3 class="skillZone_about__value-title-l89">Innovation</h3>
+                <p class="skillZone_about__value-desc-m45">We continuously innovate to improve how skills are shared and recognized.</p>
+            </div>
+            <div class="skillZone_about__value-card-j12">
+                <div class="skillZone_about__value-icon-k34"><i class="fas fa-handshake"></i></div>
+                <h3 class="skillZone_about__value-title-l89">Integrity</h3>
+                <p class="skillZone_about__value-desc-m45">We maintain the highest standards in our platform and community.</p>
+            </div>
+            <div class="skillZone_about__value-card-j12">
+                <div class="skillZone_about__value-icon-k34"><i class="fas fa-heart"></i></div>
+                <h3 class="skillZone_about__value-title-l89">Passion</h3>
+                <p class="skillZone_about__value-desc-m45">Our team is driven by passion for empowering people through skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero section animations
+        gsap.from(".skillZone_about__main-title-k19", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            ease: "power3.out",
+            delay: 0.3
+        });
+
+        gsap.from(".skillZone_about__subtitle-m87", {
+            duration: 1,
+            opacity: 0,
+            y: 30,
+            ease: "power3.out",
+            delay: 0.6
+        });
+
+        gsap.from(".skillZone_about__cta-button-p56", {
+            duration: 1,
+            opacity: 0,
+            y: 30,
+            ease: "power3.out",
+            delay: 0.9
+        });
+
+        // Stats section animations
+        gsap.utils.toArray(".skillZone_about__stat-item-r63").forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: i * 0.1,
+                ease: "back.out(1)"
+            });
+        });
+
+        // Mission section animations
+        gsap.from(".skillZone_about__mission-image-o34", {
+            scrollTrigger: {
+                trigger: ".skillZone_about__mission-section-u23",
+                start: "top 70%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            x: -50,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from(".skillZone_about__mission-content-p09", {
+            scrollTrigger: {
+                trigger: ".skillZone_about__mission-section-u23",
+                start: "top 70%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            x: 50,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // Team section animations
+        gsap.utils.toArray(".skillZone_about__team-card-w23").forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: i * 0.1,
+                ease: "back.out(1)"
+            });
+        });
+
+        // Values section animations
+        gsap.utils.toArray(".skillZone_about__value-card-j12").forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: i * 0.1,
+                ease: "back.out(1)"
+            });
+        });
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll(".skillZone_about__stat-number-t45");
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute("data-count");
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+
+        // Trigger counter animation when stats section is in view
+        ScrollTrigger.create({
+            trigger: ".skillZone_about__stats-section-q12",
+            start: "top 70%",
+            onEnter: animateCounters,
+            once: true
+        });
+    </script>
+</body>
+</html>
+
+{% endblock content %}

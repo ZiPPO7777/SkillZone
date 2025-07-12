@@ -1,0 +1,700 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}Home
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillShare Hub - Connect, Learn, Grow</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #004030;
+            --secondary: #CFFFE2;
+            --accent: #ADEED9;
+            --white: #ffffff;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, rgba(0, 64, 48, 0.8) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(207, 255, 226, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-cards {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .skill-card {
+            position: absolute;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-card:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 180px;
+            transform: rotate(-10deg);
+        }
+
+        .skill-card:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            width: 160px;
+            transform: rotate(5deg);
+        }
+
+        .skill-card:nth-child(3) {
+            bottom: 30%;
+            left: 5%;
+            width: 200px;
+            transform: rotate(8deg);
+        }
+
+        .skill-card:nth-child(4) {
+            bottom: 10%;
+            right: 10%;
+            width: 170px;
+            transform: rotate(-5deg);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .skill-badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-buttons-final {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .skill-card {
+                width: 120px !important;
+                padding: 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Connect, Learn, Grow</h1>
+                    <p class="subtitle">Your Skills, Your Network, Your Future</p>
+                    <p>Join SkillShare Hub - the premier platform where professionals and students showcase their expertise, connect with like-minded individuals, and grow their careers together.</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                        <a href="{% url "about" %}" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-cards">
+                        <div class="skill-card">
+                            <h3>Web Development</h3>
+                            <p>Frontend & Backend</p>
+                            <span class="skill-badge">Expert</span>
+                        </div>
+                        <div class="skill-card">
+                            <h3>UI/UX Design</h3>
+                            <p>Creative Solutions</p>
+                            <span class="skill-badge">Advanced</span>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Data Science</h3>
+                            <p>Analytics & ML</p>
+                            <span class="skill-badge">Intermediate</span>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Digital Marketing</h3>
+                            <p>SEO & Social Media</p>
+                            <span class="skill-badge">Expert</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Everything You Need to Showcase Your Skills</h2>
+                <p>Build your professional profile, connect with others, and unlock new opportunities with our comprehensive platform.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Professional Profiles</h3>
+                    <p>Create stunning profiles that showcase your skills, experience, and achievements. Make a lasting impression with customizable layouts and rich media support.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Skills Management</h3>
+                    <p>List your skills, get endorsed by peers, and track your professional growth. Our smart matching system connects you with relevant opportunities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📂</div>
+                    <h3>Certificate Gallery</h3>
+                    <p>Upload and organize your certificates, diplomas, and credentials. Verify your expertise and build trust with potential collaborators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Groups</h3>
+                    <p>Join specialized groups based on your interests and skills. Collaborate, share knowledge, and grow together with like-minded professionals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Smart Networking</h3>
+                    <p>Connect with professionals in your field, discover mentors, and build meaningful relationships that advance your career.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Track your profile views, skill endorsements, and network growth. Get insights to optimize your professional presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10000">0</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="500">0</span>
+                    <span class="stat-label">Skill Categories</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="50000">0</span>
+                    <span class="stat-label">Endorsements</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="200">0</span>
+                    <span class="stat-label">Communities</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Showcase Your Skills?</h2>
+                <p>Join thousands of professionals who are already building their careers on SkillShare Hub. Start your journey today!</p>
+                <div class="cta-buttons-final">
+                    <a href="#" class="btn btn-primary">Create Your Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        const tl = gsap.timeline();
+        tl.to('.hero-text h1', { opacity: 1, y: 0, duration: 1, ease: 'power2.out' })
+          .to('.hero-text .subtitle', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+          .to('.hero-text p', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+          .to('.cta-buttons', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5');
+
+        // Floating cards animation
+        gsap.set('.skill-card', { opacity: 0, y: 50 });
+        gsap.to('.skill-card', { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1, 
+            stagger: 0.2, 
+            ease: 'power2.out',
+            delay: 0.5
+        });
+
+        // Continuous floating animation
+        gsap.to('.skill-card:nth-child(1)', { 
+            y: -20, 
+            duration: 3, 
+            repeat: -1, 
+            yoyo: true, 
+            ease: 'power2.inOut',
+            delay: 0
+        });
+        gsap.to('.skill-card:nth-child(2)', { 
+            y: -15, 
+            duration: 2.5, 
+            repeat: -1, 
+            yoyo: true, 
+            ease: 'power2.inOut',
+            delay: 0.5
+        });
+        gsap.to('.skill-card:nth-child(3)', { 
+            y: -25, 
+            duration: 3.5, 
+            repeat: -1, 
+            yoyo: true, 
+            ease: 'power2.inOut',
+            delay: 1
+        });
+        gsap.to('.skill-card:nth-child(4)', { 
+            y: -18, 
+            duration: 2.8, 
+            repeat: -1, 
+            yoyo: true, 
+            ease: 'power2.inOut',
+            delay: 1.5
+        });
+
+        // Section title animations
+        gsap.utils.toArray('.section-title h2').forEach(title => {
+            gsap.to(title, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: title,
+                    start: 'top 80%'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.section-title p').forEach(subtitle => {
+            gsap.to(subtitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: subtitle,
+                    start: 'top 80%'
+                }
+            });
+        });
+
+        // Feature cards animation
+        gsap.utils.toArray('.feature-card').forEach((card, index) => {
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%'
+                },
+                delay: index * 0.1
+            });
+        });
+
+        // Stats counter animation
+        gsap.utils.toArray('.stat-item').forEach((item, index) => {
+            gsap.to(item, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 80%'
+                },
+                delay: index * 0.1
+            });
+
+            // Counter animation
+            const counter = item.querySelector('.stat-number');
+            const target = parseInt(counter.getAttribute('data-count'));
+            
+            ScrollTrigger.create({
+                trigger: item,
+                start: 'top 80%',
+                onEnter: () => {
+                    gsap.to(counter, {
+                        textContent: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        snap: { textContent: 1 },
+                        stagger: 0.1
+                    });
+                }
+            });
+        });
+
+        // CTA section animation
+        gsap.utils.toArray('.cta-content h2, .cta-content p, .cta-buttons-final').forEach((element, index) => {
+            gsap.to(element, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%'
+                },
+                delay: index * 0.2
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                gsap.to(this, { scale: 1.05, duration: 0.3, ease: 'power2.out' });
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                gsap.to(this, { scale: 1, duration: 0.3, ease: 'power2.out' });
+            });
+        });
+    </script>
+</body>
+</html>
+
+{% endblock content %}

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillZone Navbar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .skillzone_navbar_container_9x8k2m {
+            background: linear-gradient(135deg, #004030 0%, #005040 100%);
+            box-shadow: 0 4px 20px rgba(0, 64, 48, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .skillzone_navbar_wrapper_7h4j9n {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skillzone_logo_section_5k3l8p {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skillzone_logo_icon_2m9n4q {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #004030;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skillzone_logo_icon_2m9n4q:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .skillzone_title_text_8j5k9m {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .skillzone_nav_links_4n7p2q {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .skillzone_demo_btn_6r8s3t {
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skillzone_demo_btn_6r8s3t::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skillzone_demo_btn_6r8s3t:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #00ff88;
+            color: #00ff88;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .skillzone_demo_btn_6r8s3t:hover::before {
+            left: 100%;
+        }
+
+        .skillzone_auth_buttons_9p5q8r {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skillzone_login_btn_3x7y2z {
+            padding: 0.6rem 1.5rem;
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skillzone_login_btn_3x7y2z:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+
+        .skillzone_register_btn_1a4b7c {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #004030;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .skillzone_register_btn_1a4b7c:hover {
+            background: linear-gradient(135deg, #00cc6a 0%, #00aa55 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .skillzone_profile_container_8d2e5f {
+            position: relative;
+        }
+
+        .skillzone_profile_icon_7g9h3i {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #004030;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .skillzone_profile_icon_7g9h3i:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .skillzone_profile_dropdown_4j6k8l {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .skillzone_profile_dropdown_4j6k8l.skillzone_dropdown_active_2n5o7p {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .skillzone_dropdown_header_9q3r6s {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .skillzone_username_display_5t8u1v {
+            font-weight: 600;
+            color: #004030;
+            font-size: 0.9rem;
+        }
+
+        .skillzone_user_email_7w2x4y {
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .skillzone_dropdown_menu_3z6a9b {
+            padding: 0.5rem 0;
+        }
+
+        .skillzone_dropdown_item_1c4d7e {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .skillzone_dropdown_item_1c4d7e:hover {
+            background: #f8f9fa;
+            color: #004030;
+        }
+
+        .skillzone_dropdown_item_1c4d7e.skillzone_logout_item_8f2g5h {
+            color: #dc3545;
+            border-top: 1px solid #eee;
+        }
+
+        .skillzone_dropdown_item_1c4d7e.skillzone_logout_item_8f2g5h:hover {
+            background: #fff5f5;
+            color: #dc3545;
+        }
+
+        /* Mobile menu button */
+        .skillzone_mobile_menu_toggle_btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .skillzone_mobile_menu_toggle_btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile menu overlay */
+        .skillzone_mobile_menu_overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .skillzone_mobile_menu_overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .skillzone_mobile_menu_content {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100%;
+            background: linear-gradient(135deg, #004030 0%, #005040 100%);
+            z-index: 1101;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skillzone_mobile_menu_content.active {
+            right: 0;
+        }
+
+        .skillzone_mobile_menu_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skillzone_mobile_menu_close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .skillzone_mobile_menu_close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .skillzone_mobile_nav_links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .skillzone_mobile_nav_links .skillzone_demo_btn_6r8s3t {
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skillzone_mobile_auth_buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .skillzone_mobile_auth_buttons .skillzone_login_btn_3x7y2z,
+        .skillzone_mobile_auth_buttons .skillzone_register_btn_1a4b7c {
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Desktop Media Queries */
+        @media (min-width: 1400px) {
+            .skillzone_navbar_wrapper_7h4j9n {
+                padding: 1.5rem 3rem;
+            }
+            
+            .skillzone_title_text_8j5k9m {
+                font-size: 2rem;
+            }
+            
+            .skillzone_nav_links_4n7p2q {
+                gap: 2rem;
+            }
+            
+            .skillzone_demo_btn_6r8s3t {
+                padding: 0.8rem 1.5rem;
+                font-size: 1.1rem;
+            }
+            
+            .skillzone_auth_buttons_9p5q8r {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Tablet Media Queries */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .skillzone_navbar_wrapper_7h4j9n {
+                padding: 1rem 1.5rem;
+            }
+            
+            .skillzone_title_text_8j5k9m {
+                font-size: 1.6rem;
+            }
+            
+            .skillzone_nav_links_4n7p2q {
+                gap: 1rem;
+            }
+            
+            .skillzone_demo_btn_6r8s3t {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .skillzone_login_btn_3x7y2z,
+            .skillzone_register_btn_1a4b7c {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .skillzone_profile_dropdown_4j6k8l {
+                min-width: 180px;
+            }
+        }
+
+        /* Mobile Media Queries */
+        @media (max-width: 768px) {
+            .skillzone_navbar_wrapper_7h4j9n {
+                padding: 1rem;
+            }
+            
+            .skillzone_title_text_8j5k9m {
+                font-size: 1.4rem;
+            }
+            
+            .skillzone_nav_links_4n7p2q {
+                display: none;
+            }
+            
+            .skillzone_auth_buttons_9p5q8r {
+                display: none;
+            }
+            
+            .skillzone_mobile_menu_toggle_btn {
+                display: block;
+            }
+            
+            .skillzone_profile_dropdown_4j6k8l {
+                right: -1rem;
+                min-width: 160px;
+            }
+            
+            .skillzone_dropdown_header_9q3r6s {
+                padding: 0.8rem;
+            }
+            
+            .skillzone_username_display_5t8u1v {
+                font-size: 0.8rem;
+            }
+            
+            .skillzone_user_email_7w2x4y {
+                font-size: 0.7rem;
+            }
+            
+            .skillzone_dropdown_item_1c4d7e {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .skillzone_navbar_wrapper_7h4j9n {
+                padding: 0.8rem;
+            }
+            
+            .skillzone_logo_section_5k3l8p {
+                gap: 0.8rem;
+            }
+            
+            .skillzone_logo_icon_2m9n4q {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .skillzone_title_text_8j5k9m {
+                font-size: 1.2rem;
+            }
+            
+            .skillzone_profile_icon_7g9h3i {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .skillzone_profile_dropdown_4j6k8l {
+                right: -0.5rem;
+                min-width: 140px;
+            }
+            
+            .skillzone_mobile_menu_content {
+                width: 250px;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Very Small Mobile */
+        @media (max-width: 360px) {
+            .skillzone_navbar_wrapper_7h4j9n {
+                padding: 0.5rem;
+            }
+            
+            .skillzone_logo_section_5k3l8p {
+                gap: 0.5rem;
+            }
+            
+            .skillzone_logo_icon_2m9n4q {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+            
+            .skillzone_title_text_8j5k9m {
+                font-size: 1rem;
+            }
+            
+            .skillzone_profile_icon_7g9h3i {
+                width: 28px;
+                height: 28px;
+                font-size: 0.7rem;
+            }
+            
+            .skillzone_mobile_menu_content {
+                width: 220px;
+                padding: 1rem;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .skillzone_navbar_wrapper_7h4j9n {
+                padding: 0.8rem 1rem;
+            }
+            
+            .skillzone_logo_icon_2m9n4q {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .skillzone_title_text_8j5k9m {
+                font-size: 1.3rem;
+            }
+            
+            .skillzone_profile_icon_7g9h3i {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* High DPI Displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .skillzone_logo_icon_2m9n4q,
+            .skillzone_profile_icon_7g9h3i {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="skillzone_navbar_container_9x8k2m">
+        <div class="skillzone_navbar_wrapper_7h4j9n">
+            
+        <div class="skillzone_logo_section_5k3l8p">
+            {% if user.is_authenticated %}
+                <a href="{% url 'home' %}" style="text-decoration: none;">
+                    <div class="skillzone_logo_icon_2m9n4q">SZ</div>
+                </a>
+                <a href="{% url 'home' %}" style="text-decoration: none;">
+                    <h1 class="skillzone_title_text_8j5k9m">SkillZone</h1>
+                </a>
+            {% else %}
+                <a href="{% url 'welcome' %}" style="text-decoration: none;">
+                    <div class="skillzone_logo_icon_2m9n4q">SZ</div>
+                </a>
+                <a href="{% url 'welcome' %}" style="text-decoration: none;">
+                    <h1 class="skillzone_title_text_8j5k9m">SkillZone</h1>
+                </a>
+            {% endif %}
+        </div>
+
+            
+            <div class="skillzone_nav_links_4n7p2q">
+                <a href="#" class="skillzone_demo_btn_6r8s3t">Courses</a>
+                <a href="#" class="skillzone_demo_btn_6r8s3t">Tutorials</a>
+                <a href="{% url "feed_post" %}" class="skillzone_demo_btn_6r8s3t">Practice</a>
+                <a href="{% url "feed_view" %}" class="skillzone_demo_btn_6r8s3t">Feed</a>
+            </div>
+            
+            <div class="skillzone_auth_buttons_9p5q8r">
+                {% if user.is_authenticated %}
+                <div class="skillzone_profile_container_8d2e5f">
+                    <div class="skillzone_profile_icon_7g9h3i" id="skillzone_profile_trigger_6i3j8k">
+                        👤
+                    </div>
+                    
+                    <div class="skillzone_profile_dropdown_4j6k8l" id="skillzone_profile_menu_9l2m5n">
+                        <div class="skillzone_dropdown_header_9q3r6s">
+                            <div class="skillzone_username_display_5t8u1v">{{request.user.fullname}}</div>
+                            <div class="skillzone_user_email_7w2x4y">{{request.user.email}}</div>
+                        </div>
+                       <div class="skillzone_dropdown_menu_3z6a9b">
+                        <a href="#" style="text-decoration: none;"><button class="skillzone_dropdown_item_1c4d7e">📊 Dashboard</button></a>
+                        <a href="#" style="text-decoration: none;"><button class="skillzone_dropdown_item_1c4d7e">👤 Profile</button></a>
+                        <a href="#" style="text-decoration: none;"><button class="skillzone_dropdown_item_1c4d7e">⚙️ Settings</button></a>
+                        <a href="#" style="text-decoration: none;"><button class="skillzone_dropdown_item_1c4d7e">🎯 My Courses</button></a>
+                        <a href="#" style="text-decoration: none;"><button class="skillzone_dropdown_item_1c4d7e">📈 Progress</button></a>
+                        <a href="{% url "logout" %}" style="text-decoration: none;"><button class="skillzone_dropdown_item_1c4d7e skillzone_logout_item_8f2g5h">🚪 Logout</button></a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+                {% else %}
+                <a href="{% url "login" %}" class="skillzone_login_btn_3x7y2z">Login</a>
+                <a href="{% url "signup" %}" class="skillzone_register_btn_1a4b7c">Register</a>
+                {% endif %}
+                
+                
+               
+            
+            <!-- Mobile menu toggle button -->
+            <button class="skillzone_mobile_menu_toggle_btn" id="skillzone_mobile_menu_toggle">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu overlay -->
+    <div class="skillzone_mobile_menu_overlay" id="skillzone_mobile_menu_overlay"></div>
+    
+    <!-- Mobile menu content -->
+    <div class="skillzone_mobile_menu_content" id="skillzone_mobile_menu_content">
+        <div class="skillzone_mobile_menu_header">
+            <h2 style="color: white; font-size: 1.2rem; margin: 0;">Menu</h2>
+            <button class="skillzone_mobile_menu_close" id="skillzone_mobile_menu_close">
+                ✕
+            </button>
+        </div>
+        
+        <div class="skillzone_mobile_nav_links">
+            <a href="#" class="skillzone_demo_btn_6r8s3t">Courses</a>
+            <a href="#" class="skillzone_demo_btn_6r8s3t">Tutorials</a>
+            <a href="#" class="skillzone_demo_btn_6r8s3t">Practice</a>
+            <a href="#" class="skillzone_demo_btn_6r8s3t">Community</a>
+        </div>
+        
+        <div class="skillzone_mobile_auth_buttons">
+            <a href="#" class="skillzone_login_btn_3x7y2z">Login</a>
+            <a href="#" class="skillzone_register_btn_1a4b7c">Register</a>
+        </div>
+    </div>
+
+    <script>
+        // Profile dropdown functionality with ultra-unique variable names
+        const skillzoneProfileTrigger_xk9m3n = document.getElementById('skillzone_profile_trigger_6i3j8k');
+        const skillzoneProfileMenu_yl2p8q = document.getElementById('skillzone_profile_menu_9l2m5n');
+        
+        let skillzoneDropdownOpen_zr4s7t = false;
+        
+        if (skillzoneProfileTrigger_xk9m3n) {
+            skillzoneProfileTrigger_xk9m3n.addEventListener('click', function(skillzoneEvent_am6u9v) {
+                skillzoneEvent_am6u9v.stopPropagation();
+                
+                if (skillzoneDropdownOpen_zr4s7t) {
+                    skillzoneProfileMenu_yl2p8q.classList.remove('skillzone_dropdown_active_2n5o7p');
+                    skillzoneDropdownOpen_zr4s7t = false;
+                } else {
+                    skillzoneProfileMenu_yl2p8q.classList.add('skillzone_dropdown_active_2n5o7p');
+                    skillzoneDropdownOpen_zr4s7t = true;
+                }
+            });
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(skillzoneOutsideClick_bn8x2y) {
+            if (skillzoneProfileTrigger_xk9m3n && skillzoneProfileMenu_yl2p8q) {
+                if (!skillzoneProfileTrigger_xk9m3n.contains(skillzoneOutsideClick_bn8x2y.target) && 
+                    !skillzoneProfileMenu_yl2p8q.contains(skillzoneOutsideClick_bn8x2y.target)) {
+                    skillzoneProfileMenu_yl2p8q.classList.remove('skillzone_dropdown_active_2n5o7p');
+                    skillzoneDropdownOpen_zr4s7t = false;
+                }
+            }
+        });
+        
+        // Handle dropdown menu clicks
+        const skillzoneDropdownItems_co5z3a = document.querySelectorAll('.skillzone_dropdown_item_1c4d7e');
+        
+        skillzoneDropdownItems_co5z3a.forEach(function(skillzoneItem_dp8b6c) {
+            skillzoneItem_dp8b6c.addEventListener('click', function(skillzoneMenuClick_eq4d9e) {
+                const skillzoneItemText_fr7g2f = skillzoneItem_dp8b6c.textContent.trim();
+                
+                if (skillzoneItemText_fr7g2f.includes('Logout')) {
+                    if (confirm('Are you sure you want to logout?')) {
+                        alert('Logout successful!');
+                        skillzoneProfileMenu_yl2p8q.classList.remove('skillzone_dropdown_active_2n5o7p');
+                        skillzoneDropdownOpen_zr4s7t = false;
+                    }
+                } else {
+                    alert('Navigating to: ' + skillzoneItemText_fr7g2f);
+                    skillzoneProfileMenu_yl2p8q.classList.remove('skillzone_dropdown_active_2n5o7p');
+                    skillzoneDropdownOpen_zr4s7t = false;
+                }
+            });
+        });
+        
+        // Mobile menu functionality
+        const skillzoneMobileMenuToggle_gh8i2j = document.getElementById('skillzone_mobile_menu_toggle');
+        const skillzoneMobileMenuOverlay_kl5m4n = document.getElementById('skillzone_mobile_menu_overlay');
+        const skillzoneMobileMenuContent_op7q6r = document.getElementById('skillzone_mobile_menu_content');
+        const skillzoneMobileMenuClose_st9u8v = document.getElementById('skillzone_mobile_menu_close');
+        
+        let skillzoneMobileMenuOpen_wx3y2z = false;
+        
+        function skillzoneOpenMobileMenu_ab4c5d() {
+            skillzoneMobileMenuOverlay_kl5m4n.classList.add('active');
+            skillzoneMobileMenuContent_op7q6r.classList.add('active');
+            skillzoneMobileMenuOpen_wx3y2z = true;
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function skillzoneCloseMobileMenu_ef6g7h() {
+            skillzoneMobileMenuOverlay_kl5m4n.classList.remove('active');
+            skillzoneMobileMenuContent_op7q6r.classList.remove('active');
+            skillzoneMobileMenuOpen_wx3y2z = false;
+            document.body.style.overflow = 'auto';
+        }
+        
+        skillzoneMobileMenuToggle_gh8i2j.addEventListener('click', function() {
+            skillzoneOpenMobileMenu_ab4c5d();
+        });
+        
+        skillzoneMobileMenuClose_st9u8v.addEventListener('click', function() {
+            skillzoneCloseMobileMenu_ef6g7h();
+        });
+        
+        skillzoneMobileMenuOverlay_kl5m4n.addEventListener('click', function() {
+            skillzoneCloseMobileMenu_ef6g7h();
+        });
+        
+        // Close mobile menu on window resize if it's open
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && skillzoneMobileMenuOpen_wx3y2z) {
+                skillzoneCloseMobileMenu_ef6g7h();
+            }
+        });
+        
+        // Demo button interactions
+        const skillzoneDemoButtons_gs1h5i = document.querySelectorAll('.skillzone_demo_btn_6r8s3t');
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# Python
+*.pyc
+__pycache__/
+**/__pycache__/
+
+
+# Django
+*.sqlite3
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+.Python
+
+# VSCode or IDE settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# Migrations (optional if you regenerate on deploy)
+**/migrations/*.pyc
+**/migrations/__pycache__/

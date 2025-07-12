@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        /* Complex CSS Variables with Naming Convention */
+        :root {
+            --primary-ultra-dark-emerald: #00100c;
+            --primary-mega-dark-emerald: #002018;
+            --primary-super-dark-emerald: #003024;
+            --primary-dark-emerald: #004030;
+            --primary-emerald: #006048;
+            --primary-light-emerald: #008060;
+            --primary-super-light-emerald: #00a078;
+            --primary-ultra-light-emerald: #00c090;
+            --secondary-cyber-neon: #00ffc8;
+            --tertiary-matrix-green: #00ffaa;
+            --quaternary-hacker-blue: #00aaff;
+            --error-blood-red: #ff0033;
+            --warning-amber: #ffaa00;
+            --success-jade: #00cc66;
+        }
+
+        /* Ultra Complex Reset with BEM-like Naming */
+        .__404-page--root-container {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-ultra-dark-emerald);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .__404-page--particle-system-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .__404-page--particle-element {
+            position: absolute;
+            background-color: var(--primary-super-light-emerald);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .__404-page--main-content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .__404-page--error-code-display {
+            font-size: 12rem;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+            color: var(--secondary-cyber-neon);
+            text-shadow: 0 0 10px rgba(0, 255, 200, 0.5),
+                         0 0 20px rgba(0, 255, 200, 0.3),
+                         0 0 30px rgba(0, 255, 200, 0.2);
+            position: relative;
+        }
+
+        .__404-page--error-code-display::before,
+        .__404-page--error-code-display::after {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .__404-page--error-code-display::before {
+            color: var(--quaternary-hacker-blue);
+            animation: glitch-anim-1 3s infinite linear alternate-reverse;
+        }
+
+        .__404-page--error-code-display::after {
+            color: var(--error-blood-red);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        .__404-page--error-message-headline {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            color: var(--primary-ultra-light-emerald);
+            position: relative;
+        }
+
+        .__404-page--construction-notice-banner {
+            background-color: var(--warning-amber);
+            color: var(--primary-ultra-dark-emerald);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 1rem 0;
+            transform: rotate(-5deg);
+            box-shadow: 0 4px 15px rgba(255, 170, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .__404-page--error-description-paragraph {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .__404-page--cta-button-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .__404-page--primary-cta-button,
+        .__404-page--secondary-cta-button {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .__404-page--primary-cta-button {
+            background-color: var(--secondary-cyber-neon);
+            color: var(--primary-ultra-dark-emerald);
+            box-shadow: 0 0 15px rgba(0, 255, 200, 0.5);
+        }
+
+        .__404-page--secondary-cta-button {
+            background-color: transparent;
+            color: var(--secondary-cyber-neon);
+            border: 2px solid var(--secondary-cyber-neon);
+        }
+
+        .__404-page--primary-cta-button:hover,
+        .__404-page--secondary-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 200, 0.4);
+        }
+
+        .__404-page--primary-cta-button::before,
+        .__404-page--secondary-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .__404-page--primary-cta-button:hover::before,
+        .__404-page--secondary-cta-button:hover::before {
+            left: 100%;
+        }
+
+        .__404-page--floating-orb-element {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-emerald) 0%, transparent 70%);
+            filter: blur(30px);
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        /* Ultra Complex Animations */
+        @keyframes glitch-anim-1 {
+            0% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); }
+            40% { transform: translate(-5px, -5px); }
+            60% { transform: translate(5px, 5px); }
+            80% { transform: translate(5px, -5px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(-5deg); }
+            50% { transform: scale(1.05) rotate(-5deg); }
+            100% { transform: scale(1) rotate(-5deg); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Ridiculously Complex Media Queries */
+        @media only screen and (max-width: 768px) {
+            .__404-page--error-code-display {
+                font-size: 8rem;
+            }
+
+            .__404-page--error-message-headline {
+                font-size: 2rem;
+            }
+
+            .__404-page--error-description-paragraph {
+                font-size: 1rem;
+                max-width: 90%;
+            }
+
+            .__404-page--cta-button-container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .__404-page--primary-cta-button,
+            .__404-page--secondary-cta-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .__404-page--floating-orb-element {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .__404-page--error-code-display {
+                font-size: 6rem;
+            }
+
+            .__404-page--error-message-headline {
+                font-size: 1.5rem;
+            }
+
+            .__404-page--construction-notice-banner {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .__404-page--floating-orb-element {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Special Effects Classes */
+        .__404-page--matrix-rain-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .__404-page--cyber-grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 192, 144, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 192, 144, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="__404-page--root-container">
+    <div class="__404-page--particle-system-container" id="particleSystem"></div>
+    <div class="__404-page--matrix-rain-effect" id="matrixRain"></div>
+    <div class="__404-page--cyber-grid-overlay"></div>
+    
+    <div class="__404-page--floating-orb-element" style="top: 20%; left: 10%;"></div>
+    <div class="__404-page--floating-orb-element" style="bottom: 15%; right: 5%; animation: float 8s ease-in-out infinite;"></div>
+    <div class="__404-page--floating-orb-element" style="top: 30%; right: 15%; animation: float 6s ease-in-out infinite 2s;"></div>
+    
+    <div class="__404-page--main-content-wrapper">
+        <h1 class="__404-page--error-code-display">404</h1>
+        <h2 class="__404-page--error-message-headline">Page Not Found</h2>
+        
+        <div class="__404-page--construction-notice-banner">
+            🚧 This Functionality Is Currently Under Construction 🚧
+        </div>
+        
+        <p class="__404-page--error-description-paragraph">
+            The digital realm you're trying to access has either been moved, deleted, or doesn't exist yet. 
+            Our cyber architects are working hard to build this section of the matrix. 
+            Please try again later or navigate to an existing dimension.
+        </p>
+        
+        <div class="__404-page--cta-button-container">
+            <a href="/" class="__404-page--primary-cta-button">Return to Homebase</a>
+            <a href="mailto:support@example.com" class="__404-page--secondary-cta-button">Contact Cyber Support</a>
+        </div>
+    </div>
+
+    <script>
+        // Ultra Complex GSAP Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Main title animation
+            gsap.from('.__404-page--error-code-display', {
+                duration: 1.5,
+                y: -50,
+                opacity: 0,
+                ease: "elastic.out(1, 0.5)"
+            });
+
+            // Sequential animation for other elements
+            const tl = gsap.timeline();
+            tl.from('.__404-page--error-message-headline', {
+                duration: 0.8,
+                x: -30,
+                opacity: 0,
+                ease: "power3.out"
+            })
+            .from('.__404-page--construction-notice-banner', {
+                duration: 0.6,
+                scale: 0.5,
+                opacity: 0,
+                ease: "back.out(1.7)"
+            }, "-=0.4")
+            .from('.__404-page--error-description-paragraph', {
+                duration: 0.8,
+                y: 20,
+                opacity: 0,
+                ease: "power2.out"
+            }, "-=0.3")
+            .from('.__404-page--cta-button-container a', {
+                duration: 0.6,
+                y: 20,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "power2.out"
+            }, "-=0.2");
+
+            // Floating orbs animation
+            gsap.to('.__404-page--floating-orb-element:nth-child(1)', {
+                duration: 15,
+                x: "+=100",
+                y: "+=50",
+                rotation: 360,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+
+            gsap.to('.__404-page--floating-orb-element:nth-child(2)', {
+                duration: 20,
+                x: "-=150",
+                y: "-=30",
+                rotation: -360,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+
+            gsap.to('.__404-page--floating-orb-element:nth-child(3)', {
+                duration: 25,
+                x: "+=200",
+                y: "-=70",
+                rotation: 180,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+
+            // Particle system
+            createParticles();
+            createMatrixRain();
+        });
+
+        // Extremely Complex Particle System
+        function createParticles() {
+            const container = document.getElementById('particleSystem');
+            const particleCount = window.innerWidth < 768 ? 30 : 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('__404-page--particle-element');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                container.appendChild(particle);
+                
+                // Animate particle
+                gsap.to(particle, {
+                    x: "+=random(-100, 100)",
+                    y: "+=random(-100, 100)",
+                    rotation: random(0, 360),
+                    duration: duration,
+                    delay: delay,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
+            
+            function random(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+        }
+
+        // Insanely Complex Matrix Rain Effect
+        function createMatrixRain() {
+            const container = document.getElementById('matrixRain');
+            const characters = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+            const fontSize = 14;
+            const columns = Math.floor(window.innerWidth / fontSize);
+            const drops = [];
+            
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * -100);
+            }
+            
+            function draw() {
+                const ctx = document.createElement('canvas').getContext('2d');
+                ctx.canvas.width = window.innerWidth;
+                ctx.canvas.height = window.innerHeight;
+                container.appendChild(ctx.canvas);
+                
+                function rain() {
+                    ctx.fillStyle = 'rgba(0, 64, 48, 0.05)';
+                    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    
+                    ctx.fillStyle = '#00ffc8';
+                    ctx.font = `${fontSize}px monospace`;
+                    
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                        const x = i * fontSize;
+                        const y = drops[i] * fontSize;
+                        
+                        ctx.fillText(text, x, y);
+                        
+                        if (y > ctx.canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        
+                        drops[i]++;
+                    }
+                }
+                
+                const interval = setInterval(rain, 33);
+                
+                // Responsive handling
+                window.addEventListener('resize', function() {
+                    ctx.canvas.width = window.innerWidth;
+                    ctx.canvas.height = window.innerHeight;
+                    const newColumns = Math.floor(window.innerWidth / fontSize);
+                    
+                    if (newColumns > drops.length) {
+                        const diff = newColumns - drops.length;
+                        for (let i = 0; i < diff; i++) {
+                            drops.push(Math.floor(Math.random() * -100));
+                        }
+                    } else if (newColumns < drops.length) {
+                        drops.length = newColumns;
+                    }
+                });
+            }
+            
+            draw();
+        }
+    </script>
+</body>
+</html>
