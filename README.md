@@ -7,8 +7,9 @@ SkillZone is a Django-based web application built with Django 5.2.4 for learning
 
 ## 🖼️ Project Preview
 
-![Home Page](preview_images/home.png)  
+![Home Page](preview_images/home1.png)  
 ![Home Page](preview_images/home2.png)  
+![Home Page](preview_images/home3.png)  
 ![Feed Page](preview_images/feed.png)  
 ![Login Page](preview_images/login.png)
 ![Login Page](preview_images/register.png)
