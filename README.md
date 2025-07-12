@@ -97,20 +97,24 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Step 1: Create a .env file
-##🔧 Environment Variables
+Step 1: Run this command in terminal
 ```bash
-cp .env.example .env
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+You’ll get a long random string like:
+```bash
+m$3+1v6=#d2f1#u28cc+5=&p$u%3y@6gog0=u5v7n2!j1vayz
 ```
 
-Step 2: Generate a secret key
-Open Python shell:
- ```bash
-python
-#then:
-SECRET_KEY=your-generated-secret-key
+
+Create your .env file manually
+In your project root (same directory as manage.py), create a .env file and paste the key:
+✅ Make sure to wrap it in quotes '...'
+```bash
+SECRET_KEY='m$3+1v6=#d2f1#u28cc+5=&p$u%3y@6gog0=u5v7n2!j1vayz'
 DEBUG=True
 ```
+
 ⚠️ Error Tip:
 If you get an error like:
 ```bash
@@ -120,6 +124,7 @@ It means you forgot to create or fill in the .env file.
 
 ▶️ Run the Server(Before that makemigrations and migrate)
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
